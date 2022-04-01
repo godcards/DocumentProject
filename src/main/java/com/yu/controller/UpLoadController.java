@@ -8,15 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * @description: 上传文件控制器
- * @author: nxq email: niuxiangqian163@163.com
- * @createDate: 2020/12/19 4:09 下午
- * @updateUser: nxq email: niuxiangqian163@163.com
- * @updateDate: 2020/12/19 4:09 下午
- * @updateRemark:
- * @version: 1.0
- **/
 @RestController
 public class UpLoadController {
 
