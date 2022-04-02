@@ -1,5 +1,6 @@
 package com.yu.controller;
 
+import com.yu.pojo.User;
 import com.yu.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,15 +49,39 @@ public class UserController {
     public String login(@RequestParam("userName") String userName, @RequestParam("password")String password, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Subject utils = SecurityUtils.getSubject();
-        session.setAttribute("name", userName);
+        String nick = userService.SelectNickName(userName);
+        session.setAttribute("name",nick);
         UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
         //执行登陆方法
         try {
             utils.login(token);
-            return "redirect:/FileDown";
+            return "redirect:/";
         } catch (UnknownAccountException | IncorrectCredentialsException uae) {
+            model.addAttribute("error","账号或密码错误");
             return "/login";
         }
     }
-
+    //注册
+    @PostMapping("/register")
+    public String UpdateUser(Model model,String userName,String password,String passwordT,String nickName){
+        if (!password.equals(passwordT)){
+            model.addAttribute("pls","与上面密码不相等");
+        }else {
+            User user=new User();
+            if(nickName.equals("")) {
+                user.setNickName(userName);
+            }else {
+                user.setNickName(nickName);
+            }
+            if(!userName.equals("")&&password.equals("")){
+                user.setUserName(userName);
+                user.setPassword(password);
+                int i = userService.InsertUser(user);
+                return "redirect:login";
+            }else {
+                model.addAttribute("p","账号密码不能为空");
+            }
+        }
+        return null;
+    }
 }

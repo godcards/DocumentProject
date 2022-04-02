@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            height: 10%;
+            width: 10%;
+            margin: auto;
+            font-size: 15px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+<form method="post">
+    注册
+    <br/>
+    <label style="color: red" th:text="${p}"></label>
+    用户名<input type="text" name="nickName"><label style="color: gray">如果没写默认账号名</label>
+    <br/>
+    账号名<input type="text" name="userName">
+    <br/>
+    密码<input type="password" name="password">
+    <label style="color: red" th:text="${pls}"></label>
+    再输入一次<input type="password" name="passwordT">
+    <br/>
+    <input type="submit">
+</form>
+</body>
+</html>

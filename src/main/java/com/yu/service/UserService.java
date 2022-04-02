@@ -11,12 +11,20 @@ public class UserService {
     @Autowired
     UserMapper userMapper;
 
-   public User SelectUserById(int userId){
+    public User SelectUserById(int userId) {
         return userMapper.SelectUserById(userId);
     }
 
-   public User SelectUserByName(String userName){
+    public User SelectUserByName(String userName) {
         return userMapper.SelectUserByName(userName);
+    }
+
+    public String SelectNickName(String userName){
+        return userMapper.SelectNickName(userName);
+    }
+
+    public int InsertUser(User user){
+        return userMapper.InsertUser(user);
     }
 
 }

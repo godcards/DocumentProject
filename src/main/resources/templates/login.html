@@ -3,12 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        form{
+            height: 10%;
+            width: 10%;
+            margin: auto;
+            font-size: 15px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+
     <form method="post">
-        <input name="userName" type="text">
-        <input name="password" type="password">
+        <p style="color: aqua" >Login</p>
+        <label style="color: red" th:text="${error}"></label>
+        <br/>
+        账号<input name="userName" type="text">
+        <br/>
+        密码<input name="password" type="password">
+        <br/>
         <input type="submit">
+        <br/>
+        <a href="/register">没有账号(点我)</a>
     </form>
 
 </body>

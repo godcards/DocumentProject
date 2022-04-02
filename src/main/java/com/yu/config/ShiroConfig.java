@@ -22,6 +22,7 @@ public class ShiroConfig {
         filterMap.put("/FileDown","authc");
         filterMap.put("/upload","authc");
         filterMap.put("/multiUpload","authc");
+        filterMap.put("/","authc");
         bean.setFilterChainDefinitionMap(filterMap);
 
         bean.setLoginUrl("/login");
